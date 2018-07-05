@@ -21,6 +21,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Role</th>
+                <th>Email</th>
                 <th>&nbsp;</th>
             </tr>
         </thead>
@@ -47,11 +48,17 @@
                         placeholder="Last Name">
             </td>
             <td>
-                <select id="roleFld" class="form-control">
+                <select id="roleFld"
+                        class="form-control">
                     <option value="FACULTY">Faculty</option>
                     <option value="STUDENT">Student</option>
                     <option value="ADMIN">Admin</option>
                 </select>
+            </td>
+            <td>
+                <input  id="emailFld"
+                        class="form-control"
+                        placeholder="Email">
             </td>
             <td>
                 <span class="float-right" style="white-space: nowrap">
@@ -69,6 +76,7 @@
                 <td class="wbdv-first-name">Ada</td>
                 <td class="wbdv-last-name">Lovelace</td>
                 <td class="wbdv-role">FACULTY</td>
+                <td class="wbdv-role">adal@gmail.com</td>
                 <td class="wbdv-actions">
                     <span class="float-right">
                       <i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
