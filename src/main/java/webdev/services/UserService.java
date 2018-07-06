@@ -25,6 +25,19 @@ public class UserService {
 
         return null;
     }
+
+    @PostMapping("/api/register")
+    public User register(@RequestBody User user, HttpSession session){
+        Optional<User> optionalUser = userRepository.findUserByUsername(user.getUsername());
+        if(optionalUser.isPresent()){
+            return optionalUser.get();
+        }
+        else{
+            session.setAttribute("user", user);
+            return userRepository.save(user);
+        }
+    }
+
     /**
      * Method to find all the users
      * @return List of Users
