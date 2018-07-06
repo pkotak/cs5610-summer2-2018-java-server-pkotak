@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import webdev.models.User;
 import webdev.repositories.UserRepository;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,16 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    @PostMapping("/api/login")
+    public User login(@RequestBody User user, HttpSession session){
+        Optional<User> optionalUser = userRepository.findUserByUsernameAndPassword(user.getUsername(),user.getPassword());
+        if (optionalUser.isPresent()){
+            session.setAttribute("user", optionalUser.get());
+            return optionalUser.get();
+        }
+
+        return null;
+    }
     /**
      * Method to find all the users
      * @return List of Users
