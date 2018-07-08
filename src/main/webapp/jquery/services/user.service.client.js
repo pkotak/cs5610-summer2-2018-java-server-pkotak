@@ -1,21 +1,19 @@
 function UserServiceClient() {
     this.login = login;
     this.register = register;
-    var self = this;
 
     function login(username, password) {
-        return fetch(self.login(),{
+        return fetch('http://localhost:8080/api/login',{
             method: 'post',
             body: JSON.stringify({username: username, password: password}),
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function (response) {
-            if(response.status === 200){
-                return response.json();
-            }
-            else {
-                alert("Invalid Username or Password")
+        }).then(function (value) {
+            if (value.ok){
+                return value.json();
+            }else{
+                alert('Error');
             }
         });
     }
@@ -27,6 +25,6 @@ function UserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function (response) { return response.json() });
+        }).then(function (response) { return response.json(); });
     }
 }
