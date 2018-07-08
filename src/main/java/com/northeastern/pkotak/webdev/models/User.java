@@ -93,6 +93,17 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public void set(User newUser) {
+        this.setUsername(newUser.getUsername() != null ? newUser.getUsername() : this.getUsername());
+        this.setPassword(newUser.getPassword() != null ? newUser.getPassword() : this.getPassword());
+        this.setFirstName(newUser.getFirstName() != null ? newUser.getFirstName() : this.getFirstName());
+        this.setLastName(newUser.getLastName() != null ? newUser.getLastName() : this.getLastName());
+        this.setPhone(newUser.getPhone() != null ? newUser.getPhone() : this.getPhone());
+        this.setEmail(newUser.getEmail() != null ? newUser.getEmail() : this.getEmail());
+        this.setRole(newUser.getRole() != null ? newUser.getRole() : this.getRole());
+        this.setDateOfBirth(newUser.getDateOfBirth() != null ? newUser.getDateOfBirth() : this.getDateOfBirth());
+
+    }
     @Override
     public String toString() {
         return "User{" +

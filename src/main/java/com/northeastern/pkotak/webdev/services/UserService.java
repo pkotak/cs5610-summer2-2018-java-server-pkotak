@@ -1,15 +1,16 @@
-package webdev.services;
+package com.northeastern.pkotak.webdev.services;
 
+import com.northeastern.pkotak.webdev.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import webdev.models.User;
-import webdev.repositories.UserRepository;
+import com.northeastern.pkotak.webdev.models.User;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = {"*"})
 public class UserService {
 
     @Autowired

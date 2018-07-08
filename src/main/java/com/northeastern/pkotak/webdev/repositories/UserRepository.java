@@ -1,9 +1,9 @@
-package webdev.repositories;
+package com.northeastern.pkotak.webdev.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import webdev.models.User;
+import com.northeastern.pkotak.webdev.models.User;
 
 import java.util.Optional;
 
