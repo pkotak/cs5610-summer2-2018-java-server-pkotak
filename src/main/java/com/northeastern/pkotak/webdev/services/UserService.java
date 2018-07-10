@@ -83,4 +83,35 @@ public class UserService {
     public void deleteUser(@PathVariable("userId") int id) {
         userRepository.deleteById(id);
     }
+
+    /**
+     * Method to get the user object from an active session
+     * @param session holding the user object
+     * @return the user object obtained from the session
+     * @throws Exception
+     */
+    @GetMapping("/api/profile")
+    public User profile(HttpSession session)throws Exception{
+        return (User) session.getAttribute("user");
+    }
+
+    /**
+     * Method to update an exisiting user details
+     * @param updatedUser new user object
+     * @param session session containing old user object
+     * @return updated user object
+     * @throws Exception
+     */
+    @PutMapping("/api/profile")
+    public User updateProfile(@RequestBody User updatedUser, HttpSession session) throws Exception{
+//        User currentUser = (User) session.getAttribute("user");
+        Optional<User>  optionalUser = findUserById(updatedUser.getId());
+        if(optionalUser.isPresent()){
+            User userData = optionalUser.get();
+            userData.set(updatedUser);
+            session.setAttribute("user", userData);
+            return userRepository.save(userData);
+        }
+        return null;
+    }
 }

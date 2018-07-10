@@ -28,8 +28,7 @@
 
         userService.login(username,password).then(function (response) {
             if(response.username === username && response.password === password){
-                console.log('Successfully Logged in');
-                window.location.href = "../register/register.template.client.html";
+                window.location.href = "../profile/profile.template.client.html?userid="+response.id;
             }
         });
     }
