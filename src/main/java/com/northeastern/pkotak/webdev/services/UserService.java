@@ -61,15 +61,15 @@ public class UserService {
     /**
      * Updates an existing user
      * @param id User id of user to be updated
-     * @param newuser new User object containing updated values
+     * @param newUser new User object containing updated values
      * @return updated user object
      */
     @PutMapping("/api/user/{userId}")
-    public User updateuser(@PathVariable("userId") int id, @RequestBody User newuser) {
-        Optional<User> optionaluser = userRepository.findById(id);
-        if (optionaluser.isPresent()) {
-            User user = optionaluser.get();
-            user.set(newuser);
+    public User updateUser(@PathVariable("userId") int id, @RequestBody User newUser) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.set(newUser);
             return userRepository.save(user);
         } else
             return null;
