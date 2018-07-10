@@ -35,11 +35,15 @@
             role: $role.val(),
             email: $email.val(),
             phone: $phone.val(),
-            dob: $dob.val()
+            dateOfBirth: $dob.val()
         }
 
         userService.updateProfile(user)
-            .then($('.alert').show());
+            .then(function (response) {
+                console.log(JSON.stringify(response));
+                $('.alert').show();
+            })
+            //.then($('.alert').show());
     }
 
     function logout() {
@@ -65,6 +69,6 @@
         $role.val(user.role);
         $phone.val(user.phone);
         $email.val(user.email);
-        $dob.val(user.dob);
+        $dob.val(user.dateOfBirth);
     }
 })();
