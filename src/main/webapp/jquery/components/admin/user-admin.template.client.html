@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>User Admin</title>
-    <link href="user-admin.style.client.css" rel="stylesheet" />
     <link rel="stylesheet" href=
             "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href=
             "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="../../services/user.service.client.js"></script>
+    <script src="user-admin.controller.client.js"></script>
 </head>
 <body>
     <h1>User Admin</h1>
@@ -28,7 +30,7 @@
 
         <tr class="admin-form">
             <td>
-                <input  id="userameFld"
+                <input  id="usernameFld"
                         class="form-control"
                         placeholder="Username">
             </td>
@@ -40,7 +42,7 @@
             <td>
                 <input  id="firstNameFld"
                         class="form-control"
-                        placeholder="Fist Name">
+                        placeholder="First Name">
             </td>
             <td>
                 <input  id="lastNameFld"
@@ -62,9 +64,14 @@
             </td>
             <td>
                 <span class="float-right" style="white-space: nowrap">
-                    <i class="fa-2x fa fa-search wbdv-search"></i>
-                    <i class="fa-2x fa fa-plus wbdv-create"></i>
-                    <i class="fa-2x fa fa-check wbdv-update"></i>
+                    <i type="button"
+                       class="fa-2x fa fa-search wbdv-search"></i>
+                    <i type="button"
+                       id="create"
+                       class="fa-2x fa fa-plus wbdv-create"></i>
+                    <i type="button"
+                       id="update"
+                       class="fa-2x fa fa-check wbdv-update"></i>
                 </span>
             </td>
         </tr>
@@ -76,7 +83,7 @@
                 <td class="wbdv-first-name">Ada</td>
                 <td class="wbdv-last-name">Lovelace</td>
                 <td class="wbdv-role">FACULTY</td>
-                <td class="wbdv-role">adal@gmail.com</td>
+                <td class="wbdv-email">adal@gmail.com</td>
                 <td class="wbdv-actions">
                     <span class="float-right">
                       <i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
