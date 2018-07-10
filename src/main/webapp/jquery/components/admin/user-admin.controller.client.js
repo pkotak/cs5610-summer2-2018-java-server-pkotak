@@ -74,8 +74,20 @@
             row.find('.wbdv-email')
                 .html(currentUser.email);
 
+            row.find('.delete').click(deleteUser);
+            row.find('.edit').click(deleteUser);
             $tbody.append(row);
         }
     }
 
+    function deleteUser(event){
+        var deleteBtn = $(event.currentTarget);
+        var userId = deleteBtn.parent().parent().parent().attr('id');
+        userService.deleteUser(userId)
+            .then(findAllUsers);
+    }
+
+    function editUser(event){
+        console.log(event);
+    }
 })();

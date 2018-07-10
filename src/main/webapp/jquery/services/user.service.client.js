@@ -5,6 +5,7 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.findAllUsers = findAllUsers;
     this.createUser = createUser;
+    this.deleteUser = deleteUser;
 
     function login(username, password) {
         return fetch('http://localhost:8080/api/login',{
@@ -60,5 +61,11 @@ function UserServiceClient() {
                 'content-type' : 'application/json'
             }
         }).then( function (response) {return response.json();});
+    }
+
+    function deleteUser(id){
+        return fetch('http://localhost:8080/api/user/'+id,{
+            method: 'delete'
+        }).then(function (response) { return response });
     }
 }
