@@ -1,12 +1,12 @@
 (function () {
     $(main);
     var $usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld, $emailFld;
-    var $removeBtn, $editBtn, $createBtn;
     var $userRowTemplate, $tbody;
+    var $id;
     var userService = new UserServiceClient();
 
     function main(){
-        $usernameFld = $('#userameFld');
+        $usernameFld = $('#usernameFld');
         $passwordFld = $('#passwordFld');
         $firstNameFld = $('#firstNameFld');
         $lastNameFld = $("#lastNameFld");
@@ -17,7 +17,7 @@
         $userRowTemplate = $('.wbdv-template');
 
         $('#create').click(createUser);
-        //$('#update').click(updateUser);
+        $('#update').click(updateUser);
 
         findAllUsers();
     }
@@ -75,7 +75,7 @@
                 .html(currentUser.email);
 
             row.find('.delete').click(deleteUser);
-            row.find('.edit').click(deleteUser);
+            row.find('.edit').click(editUser);
             $tbody.append(row);
         }
     }
@@ -87,7 +87,51 @@
             .then(findAllUsers);
     }
 
+    function updateUser(){
+        var username = $('#usernameFld').val();
+        var password = $('#passwordFld').val();
+        var firstName = $('#firstNameFld').val();
+        var lastName = $('#lastNameFld').val();
+        var role = $('#roleFld').val();
+        var email = $('#emailFld').val();
+
+        var user = {
+            username: username,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            role: role,
+            email: email
+        };
+
+        userService
+            .updateUser($id,user)
+            .then(findAllUsers)
+            .then(resetFields);
+    }
+
     function editUser(event){
-        console.log(event);
+        var editBtn = $(event.currentTarget);
+        $id = editBtn.parent().parent().parent().attr('id');
+        userService.findUserById($id)
+            .then(populateEditFields);
+    }
+
+    function populateEditFields(user){
+        $usernameFld.val(user.username)
+        $passwordFld.val(user.password);
+        $firstNameFld.val(user.firstName);
+        $lastNameFld.val(user.lastName);
+        $roleFld.val(user.role);
+        $emailFld.val(user.email);
+    }
+
+    function resetFields(){
+        $usernameFld.val('');
+        $passwordFld.val('');
+        $firstNameFld.val('');
+        $lastNameFld.val('');
+        $roleFld.val('');
+        $emailFld.val('');
     }
 })();
