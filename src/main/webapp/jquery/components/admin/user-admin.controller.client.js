@@ -1,6 +1,7 @@
 (function () {
     $(main);
-    var $usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld, $emailFld, $phoneFld;
+    var $usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld, $emailFld,
+        $dobFld,$phoneFld;
     var $userRowTemplate, $tbody;
     var $id;
     var userService = new UserServiceClient();
@@ -12,6 +13,7 @@
         $lastNameFld = $("#lastNameFld");
         $roleFld = $('#roleFld');
         $emailFld = $('#emailFld');
+        $dobFld = $('#dobFld');
         $phoneFld = $('#phoneFld');
 
         $tbody = $('.wbdv-tbody');
@@ -31,7 +33,8 @@
         var lastName = $('#lastNameFld').val();
         var role = $('#roleFld').val();
         var email = $('#emailFld').val();
-        var phone = $('#phoneFldFld').val();
+        var dob = $('#dobFld').val();
+        var phone = $('#phoneFld').val();
 
         var user = {
             username: username,
@@ -40,12 +43,14 @@
             lastName: lastName,
             role: role,
             email: email,
+            dateOfBirth: dob,
             phone: phone
         };
 
         userService
             .createUser(user)
-            .then(findAllUsers);
+            .then(findAllUsers)
+            .then(resetFields);
     }
 
     function findAllUsers(){
@@ -80,6 +85,9 @@
             row.find('.wbdv-email')
                 .html(currentUser.email);
 
+            row.find('.wbdv-dob')
+                .html(currentUser.dateOfBirth);
+
             row.find('.wbdv-phone')
                 .html(currentUser.phone);
 
@@ -103,6 +111,7 @@
         var lastName = $('#lastNameFld').val();
         var role = $('#roleFld').val();
         var email = $('#emailFld').val();
+        var dob = $('#dobFld').val();
         var phone = $('#phoneFld').val();
 
         var user = {
@@ -112,6 +121,7 @@
             lastName: lastName,
             role: role,
             email: email,
+            dateOfBirth: dob,
             phone: phone
         };
 
@@ -135,6 +145,7 @@
         $lastNameFld.val(user.lastName);
         $roleFld.val(user.role);
         $emailFld.val(user.email);
+        $dobFld.val(user.dateOfBirth);
         $phoneFld.val(user.phone);
     }
 
@@ -145,6 +156,7 @@
         $lastNameFld.val('');
         $roleFld.val('');
         $emailFld.val('');
+        $dobFld.val('');
         $phoneFld.val('');
     }
 })();
