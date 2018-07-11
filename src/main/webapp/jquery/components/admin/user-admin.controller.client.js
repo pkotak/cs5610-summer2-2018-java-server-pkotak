@@ -65,6 +65,9 @@
             row.find('.wbdv-username')
                 .html(currentUser.username);
 
+            row.find('.wbdv-password')
+                .html('*********');
+
             row.find('.wbdv-first-name')
                 .html(currentUser.firstName);
 

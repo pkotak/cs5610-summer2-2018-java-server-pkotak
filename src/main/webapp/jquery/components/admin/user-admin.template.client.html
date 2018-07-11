@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>User Admin</title>
+    <link rel="stylesheet" href="user-admin.style.client.css">
     <link rel="stylesheet" href=
             "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href=
@@ -13,8 +14,10 @@
     <script src="user-admin.controller.client.js"></script>
 </head>
 <body>
-    <h1>User Admin</h1>
     <div class="container">
+        <div class="header-panel">
+            <h1>User Admin</h1>
+        </div>
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -32,43 +35,36 @@
             <tr class="admin-form">
                 <td>
                     <input  id="usernameFld"
-                            class="form-control"
-                            placeholder="Username">
+                            class="form-control">
                 </td>
                 <td>
                     <input  id="passwordFld"
-                            class="form-control"
-                            placeholder="Password">
+                            class="form-control">
                 </td>
                 <td>
                     <input  id="firstNameFld"
-                            class="form-control"
-                            placeholder="First Name">
+                            class="form-control">
                 </td>
                 <td>
                     <input  id="lastNameFld"
-                            class="form-control"
-                            placeholder="Last Name">
+                            class="form-control">
                 </td>
                 <td>
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="roleFld"
-                                class="form-control">
-                            <option value="FACULTY">Faculty</option>
-                            <option value="STUDENT">Student</option>
-                            <option value="ADMIN">Admin</option>
-                        </select>
-                    </div>
+                    <select class="custom-select form-control"
+                            id="roleFld">
+                        <option selected=""></option>
+                        <option value="FACULTY">Faculty</option>
+                        <option value="STUDENT">Student</option>
+                        <option value="ADMIN">Admin</option>
+                    </select>
                 </td>
                 <td>
                     <input  id="emailFld"
-                            class="form-control"
-                            placeholder="Email">
+                            class="form-control">
                 </td>
                 <td>
                     <input  id="phoneFld"
-                            class="form-control"
-                            placeholder="Phone">
+                            class="form-control">
                 </td>
                 <td>
                     <span class="float-right" style="white-space: nowrap">
@@ -85,7 +81,7 @@
             <tbody class="wbdv-tbody">
                 <tr class="wbdv-template wbdv-user wbdv-hidden">
                     <td class="wbdv-username">ada</td>
-                    <td>&nbsp;</td>
+                    <td class="wbdv-password">*******</td>
                     <td class="wbdv-first-name">Ada</td>
                     <td class="wbdv-last-name">Lovelace</td>
                     <td class="wbdv-role">FACULTY</td>
