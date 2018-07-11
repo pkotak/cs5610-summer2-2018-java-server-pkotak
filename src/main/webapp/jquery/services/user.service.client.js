@@ -10,6 +10,7 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
     this.logout = logout;
+    this.forgotPassword = forgotPassword;
 
     function login(username, password) {
         return fetch('http://localhost:8080/api/login',{
@@ -106,5 +107,15 @@ function UserServiceClient() {
         return fetch('http://localhost:8080/api/logout',{
             method: 'post'
         })
+    }
+
+    function forgotPassword(email){
+        return fetch('http://localhost:8080/api/resetpassword',{
+            method: 'post',
+            body: JSON.stringify({email: email}),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function (response) { return response.text(); })
     }
 }
