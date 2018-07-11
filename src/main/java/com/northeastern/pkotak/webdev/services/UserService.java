@@ -31,6 +31,7 @@ public class UserService {
     public User register(@RequestBody User user, HttpSession session){
         Optional<User> optionalUser = userRepository.findUserByUsername(user.getUsername());
         if(optionalUser.isPresent()){
+            session.setAttribute("user", user);
             return optionalUser.get();
         }
         else{
@@ -88,11 +89,11 @@ public class UserService {
      * Method to get the user object from an active session
      * @param session holding the user object
      * @return the user object obtained from the session
-     * @throws Exception
      */
     @GetMapping("/api/profile")
-    public User profile(HttpSession session)throws Exception{
-        return (User) session.getAttribute("user");
+    public User profile(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        return user;
     }
 
     /**
@@ -100,18 +101,13 @@ public class UserService {
      * @param updatedUser new user object
      * @param session session containing old user object
      * @return updated user object
-     * @throws Exception
-     */
+     *
+     **/
     @PutMapping("/api/profile")
-    public User updateProfile(@RequestBody User updatedUser, HttpSession session) throws Exception{
-//        User currentUser = (User) session.getAttribute("user");
-        Optional<User>  optionalUser = findUserById(updatedUser.getId());
-        if(optionalUser.isPresent()){
-            User userData = optionalUser.get();
-            userData.set(updatedUser);
-            session.setAttribute("user", userData);
-            return userRepository.save(userData);
-        }
-        return null;
+    public User updateProfile(@RequestBody User updatedUser, HttpSession session){
+        User currentUser = (User) session.getAttribute("user");
+        currentUser.set(updatedUser);
+        session.setAttribute("user", currentUser);
+        return userRepository.save(currentUser);
     }
 }

@@ -1,6 +1,6 @@
 (function () {
     $(main);
-    var $usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld, $emailFld;
+    var $usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld, $emailFld, $phoneFld;
     var $userRowTemplate, $tbody;
     var $id;
     var userService = new UserServiceClient();
@@ -12,6 +12,7 @@
         $lastNameFld = $("#lastNameFld");
         $roleFld = $('#roleFld');
         $emailFld = $('#emailFld');
+        $phoneFld = $('#phoneFld');
 
         $tbody = $('.wbdv-tbody');
         $userRowTemplate = $('.wbdv-template');
@@ -30,6 +31,7 @@
         var lastName = $('#lastNameFld').val();
         var role = $('#roleFld').val();
         var email = $('#emailFld').val();
+        var phone = $('#phoneFldFld').val();
 
         var user = {
             username: username,
@@ -37,7 +39,8 @@
             firstName: firstName,
             lastName: lastName,
             role: role,
-            email: email
+            email: email,
+            phone: phone
         };
 
         userService
@@ -56,7 +59,7 @@
         for(var i = 0; i < users.length; i++){
             var currentUser = users[i];
             var row = $userRowTemplate.clone();
-            console.log(currentUser.username);
+
             row.attr('id', currentUser.id);
 
             row.find('.wbdv-username')
@@ -73,6 +76,9 @@
 
             row.find('.wbdv-email')
                 .html(currentUser.email);
+
+            row.find('.wbdv-phone')
+                .html(currentUser.phone);
 
             row.find('.delete').click(deleteUser);
             row.find('.edit').click(editUser);
@@ -94,6 +100,7 @@
         var lastName = $('#lastNameFld').val();
         var role = $('#roleFld').val();
         var email = $('#emailFld').val();
+        var phone = $('#phoneFld').val();
 
         var user = {
             username: username,
@@ -101,7 +108,8 @@
             firstName: firstName,
             lastName: lastName,
             role: role,
-            email: email
+            email: email,
+            phone: phone
         };
 
         userService
@@ -124,6 +132,7 @@
         $lastNameFld.val(user.lastName);
         $roleFld.val(user.role);
         $emailFld.val(user.email);
+        $phoneFld.val(user.phone);
     }
 
     function resetFields(){
@@ -133,5 +142,6 @@
         $lastNameFld.val('');
         $roleFld.val('');
         $emailFld.val('');
+        $phoneFld.val('');
     }
 })();

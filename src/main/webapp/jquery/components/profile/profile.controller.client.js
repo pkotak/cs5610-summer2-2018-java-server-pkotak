@@ -21,8 +21,7 @@
         $updateBtn.click(updateProfile);
         $logoutBtn.click(logout);
 
-        id = getIdFromUrl();
-        renderUI(id);
+        renderUI();
     }
 
     function updateProfile() {
@@ -36,28 +35,21 @@
             email: $email.val(),
             phone: $phone.val(),
             dateOfBirth: $dob.val()
-        }
+        };
 
         userService.updateProfile(user)
             .then(function (response) {
                 console.log(JSON.stringify(response));
                 $('.alert').show();
             })
-            //.then($('.alert').show());
     }
 
     function logout() {
         userService.logout();
     }
-    
-    function getIdFromUrl() {
-        var url = window.location.href;
-        var id = url.slice(url.indexOf('=')+1);
-        return id;
-    }
 
-    function renderUI(id) {
-        userService.findUserById(id)
+    function renderUI() {
+        userService.getProfile()
             .then(updateFields);
     }
 

@@ -1,6 +1,7 @@
 function UserServiceClient() {
     this.login = login;
     this.register = register;
+    this.getProfile = getProfile;
     this.updateProfile = updateProfile;
     this.findUserById = findUserById;
     this.findAllUsers = findAllUsers;
@@ -11,6 +12,7 @@ function UserServiceClient() {
     function login(username, password) {
         return fetch('http://localhost:8080/api/login',{
             method: 'post',
+            'credentials': 'include',
             body: JSON.stringify({username: username, password: password}),
             headers: {
                 'content-type': 'application/json'
@@ -27,6 +29,7 @@ function UserServiceClient() {
     function register(user){
         return fetch('http://localhost:8080/api/register',{
             method: 'post',
+            'credentials': 'include',
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
@@ -34,23 +37,30 @@ function UserServiceClient() {
         }).then(function (response) { return response.json(); });
     }
 
+    function getProfile(){
+        return fetch('http://localhost:8080/api/profile',{
+            'credentials': 'include'
+        }).then(function (response) { return response.json(); })
+    }
+
     function updateProfile(user){
         return fetch('http://localhost:8080/api/profile',{
             method: 'put',
             body: JSON.stringify(user),
+            'credentials':'include',
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             }
         }).then(function (response) { return response.json(); });
     }
 
     function findUserById(id){
         return fetch('http://localhost:8080/api/user/'+id)
-            .then(function (response) { return response.json(); });
+            .then(function (response) { return response.json(); })
     }
 
     function findAllUsers() {
-        return fetch('http://localhost:8080/api/user/')
+        return fetch('http://localhost:8080/api/user')
             .then(function (response) { return response.json(); })
     }
 
