@@ -14,94 +14,98 @@
     <script src="user-admin.controller.client.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="header-panel">
-            <h1>User Admin</h1>
-        </div>
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Role</th>
-                    <th>Email</th>
-                    <th>Date Of Birth</th>
-                    <th>Phone</th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
+    <div class="header-panel">
+        <h1>User Admin</h1>
+    </div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th>Email</th>
+                <th>Date Of Birth</th>
+                <th>Phone</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
 
-            <tr class="admin-form">
-                <td>
-                    <input  id="usernameFld"
-                            class="form-control">
-                </td>
-                <td>
-                    <input  id="passwordFld"
-                            class="form-control">
-                </td>
-                <td>
-                    <input  id="firstNameFld"
-                            class="form-control">
-                </td>
-                <td>
-                    <input  id="lastNameFld"
-                            class="form-control">
-                </td>
-                <td>
-                    <select class="custom-select form-control"
-                            id="roleFld">
-                        <option selected=""></option>
-                        <option value="FACULTY">Faculty</option>
-                        <option value="STUDENT">Student</option>
-                        <option value="ADMIN">Admin</option>
-                    </select>
-                </td>
-                <td>
-                    <input  id="emailFld"
-                            class="form-control">
-                </td>
-                <td>
-                    <input  id="dobFld"
-                            type="date"
-                            class="form-control">
-                </td>
-                <td>
-                    <input  id="phoneFld"
-                            class="form-control">
-                </td>
-                <td>
-                    <span class="float-right" style="white-space: nowrap">
-                        <button type="button"
-                           id="create"
-                           class="btn btn-success">Create</button>
-                        <button type="button"
-                           id="update"
-                           class="btn btn-warning">Update</button>
+        <tr class="admin-form">
+            <td>
+                <input  id="usernameFld"
+                        type="text"
+                        class="form-control">
+            </td>
+            <td>
+                <input  id="passwordFld"
+                        type="password"
+                        class="form-control">
+            </td>
+            <td>
+                <input  id="firstNameFld"
+                        type="text"
+                        class="form-control">
+            </td>
+            <td>
+                <input  id="lastNameFld"
+                        type="text"
+                        class="form-control">
+            </td>
+            <td>
+                <select class="custom-select form-control"
+                        id="roleFld">
+                    <option selected=""></option>
+                    <option value="FACULTY">Faculty</option>
+                    <option value="STUDENT">Student</option>
+                    <option value="ADMIN">Admin</option>
+                </select>
+            </td>
+            <td>
+                <input  id="emailFld"
+                        type="email"
+                        class="form-control">
+            </td>
+            <td>
+                <input  id="dobFld"
+                        type="date"
+                        class="form-control">
+            </td>
+            <td>
+                <input  id="phoneFld"
+                        type="tel"
+                        class="form-control">
+            </td>
+            <td>
+                <span class="float-right" style="white-space: nowrap">
+                    <button type="button"
+                       id="create"
+                       class="btn btn-success">Create</button>
+                    <button type="button"
+                       id="update"
+                       class="btn btn-warning">Update</button>
+                </span>
+            </td>
+        </tr>
+
+        <tbody class="wbdv-tbody">
+            <tr class="wbdv-template wbdv-user wbdv-hidden">
+                <td class="wbdv-username">ada</td>
+                <td class="wbdv-password">*******</td>
+                <td class="wbdv-first-name">Ada</td>
+                <td class="wbdv-last-name">Lovelace</td>
+                <td class="wbdv-role">FACULTY</td>
+                <td class="wbdv-email">adal@gmail.com</td>
+                <td class="wbdv-dob">mm/dd/yyy</td>
+                <td class="wbdv-phone">6666666666</td>
+                <td class="wbdv-actions">
+                    <span class="float-right">
+                      <button class="delete btn btn-danger">Remove</button>
+                      <button class="edit btn btn-warning">Edit</button>
                     </span>
                 </td>
             </tr>
-
-            <tbody class="wbdv-tbody">
-                <tr class="wbdv-template wbdv-user wbdv-hidden">
-                    <td class="wbdv-username">ada</td>
-                    <td class="wbdv-password">*******</td>
-                    <td class="wbdv-first-name">Ada</td>
-                    <td class="wbdv-last-name">Lovelace</td>
-                    <td class="wbdv-role">FACULTY</td>
-                    <td class="wbdv-email">adal@gmail.com</td>
-                    <td class="wbdv-dob">mm/dd/yyy</td>
-                    <td class="wbdv-phone">6666666666</td>
-                    <td class="wbdv-actions">
-                        <span class="float-right">
-                          <button class="delete btn btn-danger">Remove</button>
-                          <button class="edit btn btn-warning">Edit</button>
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </body>
