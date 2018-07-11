@@ -8,6 +8,7 @@ function UserServiceClient() {
     this.createUser = createUser;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
+    this.logout = logout;
 
     function login(username, password) {
         return fetch('http://localhost:8080/api/login',{
@@ -88,5 +89,11 @@ function UserServiceClient() {
             'content-type' : 'application/json'
             }
         }).then(function (response) { return response.json(); });
+    }
+
+    function logout() {
+        return fetch('http://localhost:8080/api/logout',{
+            method: 'post'
+        })
     }
 }

@@ -110,4 +110,9 @@ public class UserService {
         session.setAttribute("user", currentUser);
         return userRepository.save(currentUser);
     }
+
+    @PostMapping("/api/logout")
+    public void logout(HttpSession session){
+        session.invalidate();
+    }
 }

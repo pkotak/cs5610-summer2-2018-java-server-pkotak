@@ -46,6 +46,7 @@
 
     function logout() {
         userService.logout();
+        window.location.href = '../login/login.template.client.html';
     }
 
     function renderUI() {
