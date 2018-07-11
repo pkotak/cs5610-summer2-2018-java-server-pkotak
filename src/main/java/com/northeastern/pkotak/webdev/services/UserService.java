@@ -1,6 +1,7 @@
 package com.northeastern.pkotak.webdev.services;
 
 import com.northeastern.pkotak.webdev.repositories.UserRepository;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.northeastern.pkotak.webdev.models.User;
@@ -25,6 +26,17 @@ public class UserService {
         }
 
         return null;
+    }
+
+    /**
+     * Method to check if username is available
+     * @param username
+     * @return true iff the username is present in the database
+     */
+    @GetMapping("/api/username/{uname}")
+    public Boolean checkUsernamePresent(@PathVariable("uname") String username){
+        Optional<User> optionalUser = userRepository.findUserByUsername(username);
+        return optionalUser.isPresent();
     }
 
     @PostMapping("/api/register")
@@ -111,6 +123,10 @@ public class UserService {
         return userRepository.save(currentUser);
     }
 
+    /**
+     * Method to remove any active session variable
+     * @param session session variable to be invalidated
+     */
     @PostMapping("/api/logout")
     public void logout(HttpSession session){
         session.invalidate();

@@ -1,5 +1,6 @@
 function UserServiceClient() {
     this.login = login;
+    this.checkUsername = checkUsername;
     this.register = register;
     this.getProfile = getProfile;
     this.updateProfile = updateProfile;
@@ -18,12 +19,18 @@ function UserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function (value) {
-            if (value.ok){
-                return value.json();
-            }else{
-                alert('Error');
-            }
+        }).then(function (response) {
+            return response.text().then(function(text) {
+                return text ? JSON.parse(text) : {}
+            })
+        });
+    }
+
+    function checkUsername(username){
+        return fetch('http://localhost:8080/api/username/'+ username,{
+            method: 'get'
+        }).then(function (response) {
+            return response.text();
         });
     }
 
@@ -35,7 +42,11 @@ function UserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function (response) { return response.json(); });
+        }).then(function (response) {
+            return response.text().then(function(text) {
+                return text ? JSON.parse(text) : {}
+            })
+        });
     }
 
     function getProfile(){

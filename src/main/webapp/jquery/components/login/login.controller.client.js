@@ -29,6 +29,8 @@
         userService.login(username,password).then(function (response) {
             if(response.username === username && response.password === password){
                 window.location.href = "../profile/profile.template.client.html";
+            }else{
+                alert('Useername and/or password not correct');
             }
         });
     }

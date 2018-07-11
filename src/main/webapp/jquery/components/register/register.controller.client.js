@@ -18,8 +18,19 @@
             password: $passwordFld.val()
         };
 
-        userService.register(user).then(function (response) {
-            console.log('Response'+JSON.stringify(response));
-        })
+        userService.checkUsername($usernameFld.val())
+            .then(function (value) {
+                if(value === 'true'){
+                    alert('Username is already taken');
+                }
+                else if($passwordFld.val() !== $verifyPasswordFld.val()){
+                    alert('Password not matching');
+                }else{
+                    userService.register(user).then(function (response) {
+                        window.location.href = '../profile/profile.template.client.html';
+                    })
+                }
+            });
+
     }
 })();
