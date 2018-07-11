@@ -39,6 +39,12 @@ public class UserService {
         return optionalUser.isPresent();
     }
 
+    /**
+     *
+     * @param user
+     * @param session
+     * @return
+     */
     @PostMapping("/api/register")
     public User register(@RequestBody User user, HttpSession session){
         Optional<User> optionalUser = userRepository.findUserByUsername(user.getUsername());
@@ -130,5 +136,16 @@ public class UserService {
     @PostMapping("/api/logout")
     public void logout(HttpSession session){
         session.invalidate();
+    }
+
+    /**
+     *
+     * @param user
+     * @return
+     */
+    @PostMapping("/api/forgotpassword")
+    public Boolean forgotPassword(@RequestBody User user){
+        //TODO: add email support
+        return true;
     }
 }
