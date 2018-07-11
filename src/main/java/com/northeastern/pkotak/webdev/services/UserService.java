@@ -3,6 +3,8 @@ package com.northeastern.pkotak.webdev.services;
 import com.northeastern.pkotak.webdev.repositories.UserRepository;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 import com.northeastern.pkotak.webdev.models.User;
 
@@ -16,6 +18,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    JavaMailSender javaMailSender;
 
     @PostMapping("/api/login")
     public User login(@RequestBody User user, HttpSession session){
@@ -139,13 +144,25 @@ public class UserService {
     }
 
     /**
-     *
-     * @param user
-     * @return
+     * Method to send a reset link to user via email
+     * @param user object containing email
+     * @return true iff email was sent successfully
      */
-    @PostMapping("/api/forgotpassword")
+    @PostMapping("/api/resetpassword")
     public Boolean forgotPassword(@RequestBody User user){
-        //TODO: add email support
-        return true;
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setFrom("team212updates@gmail.com");
+        mail.setTo(user.getEmail());
+        mail.setSubject("Reset Password");
+        mail.setText("Please click on http://localhost:8080/jquery/components/reset-password/reset-password.template.client.html to reset password");
+
+        try {
+            javaMailSender.send(mail);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Can't send message");
+            return false;
+        }
     }
 }

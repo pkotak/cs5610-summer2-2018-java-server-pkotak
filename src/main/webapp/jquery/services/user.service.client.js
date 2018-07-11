@@ -110,7 +110,7 @@ function UserServiceClient() {
     }
 
     function forgotPassword(email){
-        return fetch('http://localhost:8080/api/forgotpassword',{
+        return fetch('http://localhost:8080/api/resetpassword',{
             method: 'post',
             body: JSON.stringify({email: email}),
             headers: {

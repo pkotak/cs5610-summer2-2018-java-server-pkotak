@@ -13,6 +13,13 @@
 
     function sendEmail() {
         $('.alert').show();
-        //userService.sendEmail($emailFld.val());
+        userService.forgotPassword($emailFld.val())
+            .then(function (value) {
+                if(value){
+                    $('.alert').show();
+                } else{
+                    alert('Please enter a valid email');
+                }
+            });
     }
 })();
