@@ -13,7 +13,7 @@ function UserServiceClient() {
     this.forgotPassword = forgotPassword;
 
     function login(username, password) {
-        return fetch('http://localhost:8080/api/login',{
+        return fetch('/api/login',{
             method: 'post',
             'credentials': 'include',
             body: JSON.stringify({username: username, password: password}),
@@ -28,7 +28,7 @@ function UserServiceClient() {
     }
 
     function checkUsername(username){
-        return fetch('http://localhost:8080/api/username/'+ username,{
+        return fetch('/api/username/'+ username,{
             method: 'get'
         }).then(function (response) {
             return response.text();
@@ -36,7 +36,7 @@ function UserServiceClient() {
     }
 
     function register(user){
-        return fetch('http://localhost:8080/api/register',{
+        return fetch('/api/register',{
             method: 'post',
             'credentials': 'include',
             body: JSON.stringify(user),
@@ -51,13 +51,13 @@ function UserServiceClient() {
     }
 
     function getProfile(){
-        return fetch('http://localhost:8080/api/profile',{
+        return fetch('/api/profile',{
             'credentials': 'include'
         }).then(function (response) { return response.json(); })
     }
 
     function updateProfile(user){
-        return fetch('http://localhost:8080/api/profile',{
+        return fetch('/api/profile',{
             method: 'put',
             body: JSON.stringify(user),
             'credentials':'include',
@@ -68,17 +68,17 @@ function UserServiceClient() {
     }
 
     function findUserById(id){
-        return fetch('http://localhost:8080/api/user/'+id)
+        return fetch('/api/user/'+id)
             .then(function (response) { return response.json(); })
     }
 
     function findAllUsers() {
-        return fetch('http://localhost:8080/api/user')
+        return fetch('/api/user')
             .then(function (response) { return response.json(); })
     }
 
     function createUser(user){
-        return fetch('http://localhost:8080/api/register',{
+        return fetch('/api/register',{
             method: 'post',
             body: JSON.stringify(user),
             headers: {
@@ -88,13 +88,13 @@ function UserServiceClient() {
     }
 
     function deleteUser(id){
-        return fetch('http://localhost:8080/api/user/'+id,{
+        return fetch('/api/user/'+id,{
             method: 'delete'
         }).then(function (response) { return response });
     }
 
     function updateUser(id, user){
-        return fetch('http://localhost:8080/api/user/'+id,{
+        return fetch('/api/user/'+id,{
             method: 'put',
             body: JSON.stringify(user),
             headers:{
@@ -104,13 +104,13 @@ function UserServiceClient() {
     }
 
     function logout() {
-        return fetch('http://localhost:8080/api/logout',{
+        return fetch('/api/logout',{
             method: 'post'
         })
     }
 
     function forgotPassword(email){
-        return fetch('http://localhost:8080/api/resetpassword',{
+        return fetch('/api/resetpassword',{
             method: 'post',
             body: JSON.stringify({email: email}),
             headers: {
