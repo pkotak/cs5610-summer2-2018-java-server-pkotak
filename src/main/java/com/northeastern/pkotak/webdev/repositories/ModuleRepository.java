@@ -1,4 +1,7 @@
 package com.northeastern.pkotak.webdev.repositories;
 
-public interface ModuleRepository {
+import com.northeastern.pkotak.webdev.models.Module;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ModuleRepository extends CrudRepository<Module, Integer> {
 }
