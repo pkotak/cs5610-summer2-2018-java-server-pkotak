@@ -3,6 +3,7 @@ package com.northeastern.pkotak.webdev.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Module {
@@ -13,6 +14,8 @@ public class Module {
     @ManyToOne
     @JsonIgnore
     private Course course;
+    @OneToMany(mappedBy = "module")
+    private List<Lesson> lessons;
 
     public int getId() {
         return id;
@@ -38,6 +41,14 @@ public class Module {
         this.course = course;
     }
 
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
     public void set(Module updatedModule){
         this.setTitle(updatedModule.getTitle() != null ? updatedModule.getTitle() : this.getTitle());
         this.setCourse(updatedModule.getCourse() != null ? updatedModule.getCourse() : this.getCourse());
@@ -49,6 +60,7 @@ public class Module {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", course=" + course +
+                ", lessons=" + lessons +
                 '}';
     }
 }
