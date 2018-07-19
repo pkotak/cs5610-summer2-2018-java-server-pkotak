@@ -3,19 +3,16 @@ package com.northeastern.pkotak.webdev.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-public class Lesson {
+public class Topic {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     @ManyToOne
     @JsonIgnore
-    private Module module;
-    @OneToMany(mappedBy = "lesson")
-    private List<Topic> topics;
+    private Lesson lesson;
 
     public int getId() {
         return id;
@@ -33,29 +30,20 @@ public class Lesson {
         this.title = title;
     }
 
-    public Module getModule() {
-        return module;
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setModule(Module module) {
-        this.module = module;
-    }
-
-    public List<Topic> getTopics() {
-        return topics;
-    }
-
-    public void setTopics(List<Topic> topics) {
-        this.topics = topics;
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 
     @Override
     public String toString() {
-        return "Lesson{" +
+        return "Topic{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", module=" + module +
-                ", topics=" + topics +
+                ", lesson=" + lesson +
                 '}';
     }
 }

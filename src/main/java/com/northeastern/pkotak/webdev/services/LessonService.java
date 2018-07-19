@@ -21,9 +21,6 @@ public class LessonService {
     @Autowired
     ModuleRepository moduleRepository;
 
-    @Autowired
-    CourseRepository courseRepository;
-
     @PostMapping("/api/course/{courseId}/module/{moduleId}/lesson")
     public Lesson createLesson(@RequestBody Lesson lesson, @PathVariable("courseId") int courseId,
                                @PathVariable("moduleId") int moduleId) {
@@ -38,7 +35,7 @@ public class LessonService {
     }
 
     @GetMapping("/api/course/{courseId}/module/{moduleId}/lesson")
-    public List<Lesson> findAllModulesForCourse(@PathVariable("courseId") int courseId, @PathVariable("moduleId") int moduleId) {
+    public List<Lesson> findAllLessonsForModule(@PathVariable("moduleId") int moduleId) {
         Optional<Module> data = moduleRepository.findById(moduleId);
         if(data.isPresent()) {
             Module module = data.get();
@@ -48,7 +45,7 @@ public class LessonService {
     }
 
     @DeleteMapping("/api/lesson/{lId}")
-    public void deleteModule(@PathVariable("lId") int lessonId) {
+    public void deleteLesson(@PathVariable("lId") int lessonId) {
         lessonRepository.deleteById(lessonId);
     }
 }
