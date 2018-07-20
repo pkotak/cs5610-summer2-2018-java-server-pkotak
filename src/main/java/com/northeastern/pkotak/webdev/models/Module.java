@@ -14,7 +14,7 @@ public class Module {
     @ManyToOne
     @JsonIgnore
     private Course course;
-    @OneToMany(mappedBy = "module")
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
     private List<Lesson> lessons;
 
     public int getId() {
