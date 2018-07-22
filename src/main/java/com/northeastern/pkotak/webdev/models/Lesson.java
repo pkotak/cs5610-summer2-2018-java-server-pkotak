@@ -49,6 +49,12 @@ public class Lesson {
         this.topics = topics;
     }
 
+    public void set(Lesson updatedLesson){
+        this.setTitle(updatedLesson.getTitle() != null ? updatedLesson.getTitle() : this.getTitle());
+        this.setModule(updatedLesson.getModule() != null ? updatedLesson.getModule() : this.getModule());
+        this.setTopics(updatedLesson.getTopics() != null ? updatedLesson.getTopics() : this.getTopics());
+    }
+
     @Override
     public String toString() {
         return "Lesson{" +

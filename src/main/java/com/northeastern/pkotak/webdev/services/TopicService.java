@@ -20,6 +20,12 @@ public class TopicService {
     @Autowired
     LessonRepository lessonRepository;
 
+    /**
+     * Method to create a new topic
+     * @param topic Topic object to be inserted into the database
+     * @param lId Lesson id
+     * @return
+     */
     @PostMapping("/api/course/{courseId}/module/{moduleId}/lesson/{lessonId}/topic")
     public Topic createTopic(@RequestBody Topic topic,
                              @PathVariable("lessonId") int lId){
@@ -32,6 +38,11 @@ public class TopicService {
         return null;
     }
 
+    /**
+     * Method to find all the topics that belong to a specific lesson
+     * @param lessonId Lesson Id
+     * @return List of topics that belong to a lesson
+     */
     @GetMapping("/api/course/{courseId}/module/{moduleId}/lesson/{lessonId}/topic")
     public List<Topic> findAllTopicsForLesson(@PathVariable("lessonId") int lessonId) {
         Optional<Lesson> data = lessonRepository.findById(lessonId);
@@ -42,6 +53,10 @@ public class TopicService {
         return null;
     }
 
+    /**
+     * method to delete a topic
+     * @param topicId specific Id of a topic to be deleted
+     */
     @DeleteMapping("/api/topic/{tId}")
     public void deleteTopic(@PathVariable("tId") int topicId) {
         topicRepository.deleteById(topicId);
