@@ -53,14 +53,4 @@ public class Module {
         this.setTitle(updatedModule.getTitle() != null ? updatedModule.getTitle() : this.getTitle());
         this.setCourse(updatedModule.getCourse() != null ? updatedModule.getCourse() : this.getCourse());
     }
-
-    @Override
-    public String toString() {
-        return "Module{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", course=" + course +
-                ", lessons=" + lessons +
-                '}';
-    }
 }

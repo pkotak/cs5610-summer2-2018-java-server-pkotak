@@ -57,14 +57,4 @@ public class Course {
         this.modules = modules;
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", created=" + created +
-                ", modified=" + modified +
-                ", modules=" + modules +
-                '}';
-    }
 }

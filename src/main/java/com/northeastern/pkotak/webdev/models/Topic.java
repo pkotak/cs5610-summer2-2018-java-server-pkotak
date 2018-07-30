@@ -3,6 +3,7 @@ package com.northeastern.pkotak.webdev.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Topic {
@@ -13,6 +14,8 @@ public class Topic {
     @ManyToOne
     @JsonIgnore
     private Lesson lesson;
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
+    private List<Widget> widgets;
 
     public int getId() {
         return id;
@@ -38,12 +41,11 @@ public class Topic {
         this.lesson = lesson;
     }
 
-    @Override
-    public String toString() {
-        return "Topic{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", lesson=" + lesson +
-                '}';
+    public List<Widget> getWidgets() {
+        return widgets;
+    }
+
+    public void setWidgets(List<Widget> widgets) {
+        this.widgets = widgets;
     }
 }

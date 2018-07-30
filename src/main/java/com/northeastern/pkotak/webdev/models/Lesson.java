@@ -55,13 +55,4 @@ public class Lesson {
         this.setTopics(updatedLesson.getTopics() != null ? updatedLesson.getTopics() : this.getTopics());
     }
 
-    @Override
-    public String toString() {
-        return "Lesson{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", module=" + module +
-                ", topics=" + topics +
-                '}';
-    }
 }
