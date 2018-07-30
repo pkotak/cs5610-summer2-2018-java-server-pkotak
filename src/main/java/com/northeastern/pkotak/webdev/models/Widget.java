@@ -19,8 +19,7 @@ public class Widget {
     private String href;
     private int size;
     private Boolean ordered;
-    private String width;
-    private String height;
+    private int order;
     @ManyToOne
     @JsonIgnore
     private Topic topic;
@@ -97,22 +96,6 @@ public class Widget {
         this.size = size;
     }
 
-    public String getWidth() {
-        return width;
-    }
-
-    public void setWidth(String width) {
-        this.width = width;
-    }
-
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
     public Boolean getOrdered() {
         return ordered;
     }
@@ -129,4 +112,11 @@ public class Widget {
         this.topic = topic;
     }
 
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
 }
