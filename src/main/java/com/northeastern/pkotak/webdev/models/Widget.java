@@ -19,7 +19,7 @@ public class Widget {
     private String href;
     private int size;
     private Boolean ordered;
-    private int order;
+    private int position;
     @ManyToOne
     @JsonIgnore
     private Topic topic;
@@ -112,11 +112,11 @@ public class Widget {
         this.topic = topic;
     }
 
-    public int getOrder() {
-        return order;
+    public int getPosition() {
+        return position;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
