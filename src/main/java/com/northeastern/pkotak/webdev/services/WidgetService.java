@@ -4,9 +4,16 @@ import com.northeastern.pkotak.webdev.models.Topic;
 import com.northeastern.pkotak.webdev.models.Widget;
 import com.northeastern.pkotak.webdev.repositories.TopicRepository;
 import com.northeastern.pkotak.webdev.repositories.WidgetRepository;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,5 +70,35 @@ public class WidgetService {
             return widget;
         }
         return null;
+    }
+
+    @GetMapping("/api/image/search/{query}")
+    public List<String> call_me(@PathVariable("query") String searchQuery) throws Exception {
+        String url = "https://www.googleapis.com/customsearch/v1?key="+System.getenv("GOOGLE_API_KEY")+"&q="+searchQuery+"&searchType=image";
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        // optional default is GET
+        con.setRequestMethod("GET");
+        //add request header
+        con.setRequestProperty("User-Agent", "Mozilla/5.0");
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'GET' request to URL : " + url);
+        System.out.println("Response Code : " + responseCode);
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        JSONObject myResponse = new JSONObject(response.toString());
+        JSONArray jsonArray = myResponse.getJSONArray("items");
+        List<String> links = new ArrayList<>();
+        for(int i = 0; i < jsonArray.length(); i++){
+            JSONObject object = jsonArray.getJSONObject(i);
+            links.add(object.getString("link"));
+        }
+        return links;
     }
 }
