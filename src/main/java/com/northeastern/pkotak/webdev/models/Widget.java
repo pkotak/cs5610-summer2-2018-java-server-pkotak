@@ -20,6 +20,9 @@ public class Widget {
     private int size;
     private Boolean ordered;
     private int position;
+    private String youtubeIframe;
+    private String docIframe;
+    private String slidesIframe;
     @ManyToOne
     @JsonIgnore
     private Topic topic;
@@ -118,5 +121,29 @@ public class Widget {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public String getYoutubeIframe() {
+        return youtubeIframe;
+    }
+
+    public void setYoutubeIframe(String youtubeIframe) {
+        this.youtubeIframe = youtubeIframe;
+    }
+
+    public String getDocIframe() {
+        return docIframe;
+    }
+
+    public void setDocIframe(String docIframe) {
+        this.docIframe = docIframe;
+    }
+
+    public String getSlidesIframe() {
+        return slidesIframe;
+    }
+
+    public void setSlidesIframe(String slidesIframe) {
+        this.slidesIframe = slidesIframe;
     }
 }
