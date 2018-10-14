@@ -23,6 +23,9 @@ public class Widget {
     private String youtubeIframe;
     private String docIframe;
     private String slidesIframe;
+    @Lob
+    @Column(name = "html_content", length = 512)
+    private String htmlContent;
     @ManyToOne
     @JsonIgnore
     private Topic topic;
@@ -145,5 +148,13 @@ public class Widget {
 
     public void setSlidesIframe(String slidesIframe) {
         this.slidesIframe = slidesIframe;
+    }
+
+    public String getHtmlContent() {
+        return htmlContent;
+    }
+
+    public void setHtmlContent(String htmlContent) {
+        this.htmlContent = htmlContent;
     }
 }
