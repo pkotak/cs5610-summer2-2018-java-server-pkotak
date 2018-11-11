@@ -1,10 +1,8 @@
 package com.northeastern.pkotak.webdev.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class User {
@@ -18,7 +16,8 @@ public class User {
     private String lastName;
     private String phone;
     private String email;
-    private String role;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Role> role;
     private Date dateOfBirth;
 
     public int getId() {
@@ -77,11 +76,11 @@ public class User {
         this.email = email;
     }
 
-    public String getRole() {
+    public List<Role> getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(List<Role> role) {
         this.role = role;
     }
 

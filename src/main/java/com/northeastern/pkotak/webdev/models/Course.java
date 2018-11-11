@@ -16,6 +16,8 @@ public class Course {
     private Date modified;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Module> modules;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Role> roles;
 
     public int getId() {
         return id;
@@ -57,4 +59,11 @@ public class Course {
         this.modules = modules;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }
