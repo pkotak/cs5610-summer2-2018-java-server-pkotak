@@ -1,10 +1,14 @@
 package com.northeastern.pkotak.webdev.services;
 
 import com.northeastern.pkotak.webdev.models.Course;
+import com.northeastern.pkotak.webdev.models.Role;
+import com.northeastern.pkotak.webdev.models.User;
 import com.northeastern.pkotak.webdev.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +20,14 @@ public class CourseService {
     CourseRepository courseRepository;
 
     @PostMapping("/api/course")
-    public Course createCourse(@RequestBody Course course){
+    public Course createCourse(@RequestBody Course course, HttpSession session){
+        Role userRole = new Role();
+        userRole.setCourse(course);
+        userRole.setRoleType("FACULTY");
+        userRole.setUser((User) session.getAttribute("user"));
+        List<Role> roleList = (course.getRoles() != null) ? course.getRoles() : new ArrayList<>();
+        roleList.add(userRole);
+        course.setRoles(roleList);
         return courseRepository.save(course);
     }
 
