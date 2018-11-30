@@ -18,6 +18,16 @@ public class Course {
     private List<Module> modules;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Role> roles;
+    @Transient
+    private Boolean isEditable;
+
+    public Boolean getEditable() {
+        return isEditable;
+    }
+
+    public void setEditable(Boolean editable) {
+        isEditable = editable;
+    }
 
     public int getId() {
         return id;

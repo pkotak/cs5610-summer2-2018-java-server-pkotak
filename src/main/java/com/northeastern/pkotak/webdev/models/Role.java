@@ -15,7 +15,8 @@ public class Role {
     @ManyToOne
     @JsonIgnore
     private Course course;
-    private String roleType;
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
     public int getId() {
         return id;
@@ -33,11 +34,11 @@ public class Role {
         this.user = user;
     }
 
-    public String getRoleType() {
+    public RoleType getRoleType() {
         return roleType;
     }
 
-    public void setRoleType(String roleType) {
+    public void setRoleType(RoleType roleType) {
         this.roleType = roleType;
     }
 

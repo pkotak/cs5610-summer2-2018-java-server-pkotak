@@ -16,6 +16,8 @@ public class User {
     private String lastName;
     private String phone;
     private String email;
+    @Enumerated(EnumType.STRING)
+    private RoleType primaryRole;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Role> role;
     private Date dateOfBirth;
@@ -42,6 +44,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public RoleType getPrimaryRole() {
+        return primaryRole;
+    }
+
+    public void setPrimaryRole(RoleType primaryRole) {
+        this.primaryRole = primaryRole;
     }
 
     public String getFirstName() {
