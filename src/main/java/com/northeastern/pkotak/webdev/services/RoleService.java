@@ -2,13 +2,17 @@ package com.northeastern.pkotak.webdev.services;
 
 import com.northeastern.pkotak.webdev.models.Course;
 import com.northeastern.pkotak.webdev.models.Role;
+import com.northeastern.pkotak.webdev.models.RoleClone;
 import com.northeastern.pkotak.webdev.models.User;
 import com.northeastern.pkotak.webdev.repositories.CourseRepository;
 import com.northeastern.pkotak.webdev.repositories.RoleRepository;
+import com.northeastern.pkotak.webdev.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -19,7 +23,27 @@ public class RoleService {
     RoleRepository roleRepository;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     CourseRepository courseRepository;
+
+    @GetMapping("/api/user/{userId}/roles")
+    public List<RoleClone> findUserRoles(@PathVariable("userId") int userId){
+        List<RoleClone> userRoles = new ArrayList<>();
+        Optional<User> optionalUser = userRepository.findById(userId);
+        User user = optionalUser.isPresent() ? optionalUser.get() : null;
+        for(Role role : user.getRole()){
+            RoleClone rc = new RoleClone();
+            rc.setId(role.getId());
+            rc.setCourseId(role.getCourse().getId());
+            rc.setUserId(role.getUser().getId());
+            rc.setRoleType(role.getRoleType());
+            userRoles.add(rc);
+        }
+        return userRoles;
+    }
+
 
     @PostMapping("/api/course/{cid}/role")
     public Role createRoleForCourse(@RequestBody Role role,
