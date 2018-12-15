@@ -36,8 +36,8 @@ public class RoleService {
             for(Role role : user.getRole()){
                 RoleClone rc = new RoleClone();
                 rc.setId(role.getId());
-                rc.setCourseId(role.getCourse().getId());
-                rc.setUserId(role.getUser().getId());
+                rc.setCourse(role.getCourse());
+                rc.setUser(role.getUser());
                 rc.setRoleType(role.getRoleType());
                 userRoles.add(rc);
             }

@@ -2,8 +2,8 @@ package com.northeastern.pkotak.webdev.models;
 
 public class RoleClone {
     private int id;
-    private int userId;
-    private int courseId;
+    private User user;
+    private Course course;
     private RoleType roleType;
 
     public int getId() {
@@ -14,20 +14,20 @@ public class RoleClone {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getCourseId() {
-        return courseId;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public RoleType getRoleType() {
