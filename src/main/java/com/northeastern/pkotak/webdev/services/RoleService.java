@@ -28,18 +28,19 @@ public class RoleService {
     @Autowired
     CourseRepository courseRepository;
 
-    @GetMapping("/api/user/{userId}/roles")
-    public List<RoleClone> findUserRoles(@PathVariable("userId") int userId){
+    @GetMapping("/api/user/roles")
+    public List<RoleClone> findUserRoles(){
         List<RoleClone> userRoles = new ArrayList<>();
-        Optional<User> optionalUser = userRepository.findById(userId);
-        User user = optionalUser.isPresent() ? optionalUser.get() : null;
-        for(Role role : user.getRole()){
-            RoleClone rc = new RoleClone();
-            rc.setId(role.getId());
-            rc.setCourseId(role.getCourse().getId());
-            rc.setUserId(role.getUser().getId());
-            rc.setRoleType(role.getRoleType());
-            userRoles.add(rc);
+        List<User> userList = (List<User>) userRepository.findAll();
+        for(User user : userList){
+            for(Role role : user.getRole()){
+                RoleClone rc = new RoleClone();
+                rc.setId(role.getId());
+                rc.setCourseId(role.getCourse().getId());
+                rc.setUserId(role.getUser().getId());
+                rc.setRoleType(role.getRoleType());
+                userRoles.add(rc);
+            }
         }
         return userRoles;
     }
