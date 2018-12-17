@@ -45,6 +45,10 @@ public class RoleService {
         return userRoles;
     }
 
+    @DeleteMapping("/api/user/role/{roleId}")
+    public void deleteRole(@PathVariable("roleId") int roleId){
+        roleRepository.deleteById(roleId);
+    }
 
     @PostMapping("/api/course/{cid}/role")
     public Role createRoleForCourse(@RequestBody Role role,
